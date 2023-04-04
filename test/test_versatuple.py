@@ -25,7 +25,7 @@ class TestVersatuple(unittest.TestCase):
                             ("id", "color", "direction", "count"),
                             defaults=(33, "red", "n", 222))
         vt = VTuple.new()
-        self.assertEqual(tuple(vt), (33, "red", "n", 222))
+        self.assertEqual(vt, (33, "red", "n", 222))
 
 
     def test_immutable_setters(self):
@@ -33,13 +33,13 @@ class TestVersatuple(unittest.TestCase):
         VTuple = versatuple("VTuple", ("id", "color", "direction", "count"))
         vt = VTuple(3, "yellow", "north", 25)
         vt2 = vt.with_id(4)
-        self.assertEqual(tuple(vt2), (4, "yellow", "north", 25))
+        self.assertEqual(vt2, (4, "yellow", "north", 25))
         vt3 = vt2.with_color("green")
-        self.assertEqual(tuple(vt3), (4, "green", "north", 25))
+        self.assertEqual(vt3, (4, "green", "north", 25))
         vt4 = vt3.with_direction("south")
-        self.assertEqual(tuple(vt4), (4, "green", "south", 25))
+        self.assertEqual(vt4, (4, "green", "south", 25))
         vt5 = vt4.with_count(300)
-        self.assertEqual(tuple(vt5), (4, "green", "south", 300))
+        self.assertEqual(vt5, (4, "green", "south", 300))
 
     def test_is_valid(self):
         """Test validation of versatuple."""
