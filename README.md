@@ -1,2 +1,2 @@
 # Versatuple
-Extension of namedtuple with field updaters, field shortcuts, and validators.
+Extension of namedtuple with default values, field updaters, field shortcuts, and validators.
