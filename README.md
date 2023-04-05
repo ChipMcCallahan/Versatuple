@@ -104,6 +104,7 @@ print(Vehicle.new().beamer().y23()) # shortcut for .Make("BMW").Year(2023)
 ```
 ### Factories
 - Assign factories to create multi-field presets.
+  - If a preset does not set a field, it reverts to `defaults`.
 ```python
 Vehicle = versatuple("Vehicle",
                      ("make", "model", "year", "color"),
