@@ -1,15 +1,18 @@
 # Versatuple
+Versatuple ("versatile tuple") is a extension of namedtuple with default values, field updaters, field shortcuts, factories and validators.
+
+### Installation
 ```
 pip install git+https://github.com/ChipMcCallahan/Versatuple.git
 ```
-Versatuple ("versatile tuple") is a extension of namedtuple with default values, field updaters, field shortcuts, factories and validators.
 
-- Import example
+### Importing
 ```python
 from versatuple import versatuple
 ```
 
-- Base case: `versatuple` can always be used like `collections.namedtuple`. Example:
+### Basic syntax
+- Versatuple is based on [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) and can be used the same way in the base case.
 ```python
 Person = versatuple("Person",("name", "age"))
 p = Person("Chip", 33)
