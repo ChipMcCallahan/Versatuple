@@ -1,5 +1,5 @@
 # Versatuple
-Versatuple ("versatile tuple") is a extension of [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) with default values, field updaters, field shortcuts, factories and validators.
+`Versatuple` ("versatile tuple") is a extension of [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) with default values, field updaters, field shortcuts, factories and validators.
 - Like `namedtuple`, its fields can be accessed by instance properties.
 - Like all tuples, instances are immutable if their property values are immutable.
 
@@ -14,7 +14,7 @@ from versatuple import versatuple
 ```
 
 ### Basic Syntax
-- Versatuple is based on [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) and can be used the same way in the base case.
+- `Versatuple` is based on [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) and can be used the same way in the base case.
 ```python
 Person = versatuple("Person",("name", "age"))
 p = Person("Chip", 33)
@@ -42,4 +42,11 @@ Dog(name=None, breed=None)
 ```
 
 ### Immutable Field Setters
-- A Versatuple is immutable, however 
+- Being immutable, a `Versatuple`'s fields cannot be updated. 
+- However, it is very easy to create copies of the `Versatuple` with updated fields.
+- Use the capitalized field name as a method, and pass the desired value.
+  - This returns a new `Versatuple` with all the same fields except for the updated field.
+  - This effect can be chained for quick tuple creation.
+```python
+
+```
