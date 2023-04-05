@@ -68,7 +68,7 @@ def versatuple(class_name: str, field_names: Iterable[str], *,
             return nt_class(**self_dict)
         return setter
     for field_name in field_names:
-        safe_setattr(nt_class, f"with_{field_name}", immutable_setter(field_name))
+        safe_setattr(nt_class, f"{field_name.capitalize()}", immutable_setter(field_name))
 
     # Field Validators
     safe_setattr(nt_class, "validators", validators or {})

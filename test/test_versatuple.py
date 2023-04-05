@@ -11,7 +11,7 @@ class TestVersatuple(unittest.TestCase):
         """Test basic functionality."""
         VTuple = versatuple("VTuple", ("id", "color", "direction", "count"))
         id_, color, direction, count = 3, "yellow", "n", 25
-        vt = VTuple.new().with_id(id_).with_color(color).with_direction(direction).with_count(count)
+        vt = VTuple.new().Id(id_).Color(color).Direction(direction).Count(count)
         self.assertEqual(vt.id, id_)
         self.assertEqual(vt.color, color)
         self.assertEqual(vt.direction, direction)
@@ -32,13 +32,13 @@ class TestVersatuple(unittest.TestCase):
         """Immutable Setters should exist and work correctly."""
         VTuple = versatuple("VTuple", ("id", "color", "direction", "count"))
         vt = VTuple(3, "yellow", "north", 25)
-        vt2 = vt.with_id(4)
+        vt2 = vt.Id(4)
         self.assertEqual(vt2, (4, "yellow", "north", 25))
-        vt3 = vt2.with_color("green")
+        vt3 = vt2.Color("green")
         self.assertEqual(vt3, (4, "green", "north", 25))
-        vt4 = vt3.with_direction("south")
+        vt4 = vt3.Direction("south")
         self.assertEqual(vt4, (4, "green", "south", 25))
-        vt5 = vt4.with_count(300)
+        vt5 = vt4.Count(300)
         self.assertEqual(vt5, (4, "green", "south", 300))
 
     def test_is_valid(self):
@@ -50,9 +50,9 @@ class TestVersatuple(unittest.TestCase):
         id_, color, direction, count = 3, "yellow", "n", 25
         vt = VTuple(id_, color, direction, count)
         self.assertTrue(vt.is_valid())
-        self.assertFalse(vt.with_color("green").is_valid())
-        self.assertFalse(vt.with_count(-1).is_valid())
-        self.assertFalse(vt.with_count(100).is_valid())
+        self.assertFalse(vt.Color("green").is_valid())
+        self.assertFalse(vt.Count(-1).is_valid())
+        self.assertFalse(vt.Count(100).is_valid())
 
     def test_field_shortcuts(self):
         """Test field shortcuts of versatuple."""
