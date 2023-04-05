@@ -85,5 +85,21 @@ Person(name='Morton', age=-1) is_valid: False
 ```
 
 ### Field Shortcuts
-
+- Assign field shortcuts for common cases to simplify coding.
+  - Keys of the shortcuts dict are the field the shortcut affects.
+  - Values are a sequence of 2-element tuples. First element is the method name; second is the value to apply.
+```python
+Vehicle = versatuple("Vehicle",
+                     ("make", "model", "year"),
+                     shortcuts={
+                         "make": (("toyota", "Toyota"), ("beamer", "BMW")),
+                         "year": (("y22", 2022), ("y23", 2023))
+                     })
+print(Vehicle.new().toyota().y22())
+print(Vehicle.new().beamer().y23())
+```
+```
+Vehicle(make='Toyota', model=None, year=2022)
+Vehicle(make='BMW', model=None, year=2023)
+```
 ### Factories
