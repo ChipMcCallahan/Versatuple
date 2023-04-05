@@ -46,7 +46,7 @@ class TestVersatuple(unittest.TestCase):
         validators = {"color": lambda _color: _color in ("yellow", "red"),
                       "count": lambda _count: 0 <= _count < 100}
         VTuple = versatuple("VTuple", ("id", "color", "direction", "count"),
-                            field_validators_dict=validators)
+                            validators=validators)
         id_, color, direction, count = 3, "yellow", "n", 25
         vt = VTuple(id_, color, direction, count)
         self.assertTrue(vt.is_valid())
@@ -60,7 +60,7 @@ class TestVersatuple(unittest.TestCase):
                      "count": [("count1", 1)]}
         VTuple = versatuple("VTuple",
                             ("id", "color", "direction", "count"),
-                            field_shortcuts_dict=shortcuts)
+                            shortcuts=shortcuts)
         id_, color, direction, count = 3, "blue", "n", 25
         vt = VTuple(id_, color, direction, count)
         vt2 = vt.yellow()
@@ -69,3 +69,18 @@ class TestVersatuple(unittest.TestCase):
         self.assertEqual(vt3.color, "red")
         vt4 = vt.count1()
         self.assertEqual(vt4.count, 1)
+
+    def test_factories(self):
+        """Test factories of versatuple."""
+        factories = {
+            "yellow_south_3": {"color": "yellow", "direction": "s", "count": 3},
+            "blue_99": {"color": "blue", "count": 99},
+            "id_22": {"id": 22}
+        }
+        VTuple = versatuple("VTuple",
+                            ("id", "color", "direction", "count"),
+                            defaults=(33, "red", "n", 222),
+                            factories=factories)
+        self.assertEqual(VTuple.yellow_south_3(), (33, "yellow", "s", 3))
+        self.assertEqual(VTuple.blue_99(), (33, "blue", "n", 99))
+        self.assertEqual(VTuple.id_22(), (22, "red", "n", 222))
