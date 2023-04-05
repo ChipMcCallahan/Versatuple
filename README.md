@@ -1,5 +1,7 @@
 # Versatuple
-Versatuple ("versatile tuple") is a extension of namedtuple with default values, field updaters, field shortcuts, factories and validators.
+Versatuple ("versatile tuple") is a extension of [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) with default values, field updaters, field shortcuts, factories and validators.
+- Like `namedtuple`, its fields can be accessed by instance properties.
+- Like all tuples, instances are immutable if their property values are immutable.
 
 ### Installation
 ```
