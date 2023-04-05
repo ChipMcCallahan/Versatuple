@@ -65,3 +65,25 @@ print(address)
 Address(recipient='Chip McCallahan', number=1234, street='Blobby Ave', city='Chip City', state='Denial', zip=56789)
 ```
 - NOTE: This code snippet creates 7 different tuple objects, one for each method call. **From a runtime perspective, this is not efficient**; however it makes for easy coding. In the future, this may be updated to include a Builder pattern for better performance.
+
+### Field Validation
+- Validate fields by supplying `validators` and then calling `.is_valid()` on a tuple instance.
+```python
+Person = versatuple("Person",
+                    ("name", "age"),
+                    validators = {
+                        "name": lambda name: name == name.capitalize(),
+                        "age": lambda age: 0 <= age
+                    })
+for p in (Person("Chip", 33), Person("melinda", 33), Person("Morton", -1)):
+    print(f"{p} is_valid: {p.is_valid()}")
+```
+```
+Person(name='Chip', age=33) is_valid: True
+Person(name='melinda', age=33) is_valid: False
+Person(name='Morton', age=-1) is_valid: False
+```
+
+### Field Shortcuts
+
+### Factories
