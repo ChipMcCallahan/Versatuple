@@ -48,7 +48,20 @@ Dog(name=None, breed=None)
 - However, it is very easy to create copies of the `Versatuple` with updated fields.
 - Use the capitalized field name as a method, and pass the desired value.
   - This returns a new `Versatuple` with all the same fields except for the updated field.
-  - This effect can be chained for quick tuple creation.
+  - This effect can be chained for easy tuple creation.
 ```python
-
+Address = versatuple("Address",
+                     ("recipient", "number", "street", "city", "state", "zip"))
+address = Address.new() \
+                 .Recipient("Chip McCallahan") \
+                 .Number(1234) \
+                 .Street("Blobby Ave") \
+                 .City("Chip City") \
+                 .State("Denial") \
+                 .Zip(56789)
+print(address)
 ```
+```
+Address(recipient='Chip McCallahan', number=1234, street='Blobby Ave', city='Chip City', state='Denial', zip=56789)
+```
+- NOTE: This code snippet creates 7 different tuple objects, one for each method call. **From a runtime perspective, this is not efficient**; however it makes for easy coding. 
