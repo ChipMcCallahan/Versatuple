@@ -103,3 +103,18 @@ print(Vehicle.new().toyota().y22()) # shortcut for .Make("Toyota").Year(2022)
 print(Vehicle.new().beamer().y23()) # shortcut for .Make("BMW").Year(2023)
 ```
 ### Factories
+- Assign factories to create multi-field presets.
+```python
+Vehicle = versatuple("Vehicle",
+                     ("make", "model", "year", "color"),
+                     factories={
+                         "white_prius": {"make": "Toyota", "model": "Prius", "color": "green"},
+                         "camaro22": {"make": "Chevrolet", "model": "Camaro", "year": 2022}
+                     })
+print(Vehicle.white_prius())
+print(Vehicle.camaro22())
+```
+```
+Vehicle(make='Toyota', model='Prius', year=None, color='green')
+Vehicle(make='Chevrolet', model='Camaro', year=2022, color=None)
+```
