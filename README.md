@@ -24,15 +24,19 @@ print(p)
 Person(name='Chip', age=33)
 ```
 
-- Default values: supply a tuple of the same length as the field names to specify defaults.
-  - Use the `.new()` method to create with defaults.
+### Default values
+- Supply a tuple of the same length as the field names with the keyword `defaults` to specify default values for fields.
+- Use the `.new()` method to create with defaults.
+- If `defaults` is not supplied, calling `.new()` will give `None` for each field.
 ```python
 Person = versatuple("Person",
                     ("name", "age"),
                     defaults=("Anonymous", 0))
-p = Person.new()
-print(p)
+Dog = versatuple("Dog", ("name", "breed")) # no defaults specified
+print(Person.new())
+print(Dog.new())
 ```
 ```
 Person(name='Anonymous', age=0)
+Dog(name=None, breed=None)
 ```
