@@ -13,7 +13,7 @@ pip install git+https://github.com/ChipMcCallahan/Versatuple.git
 from versatuple import versatuple
 ```
 
-### Basic syntax
+### Basic Syntax
 - Versatuple is based on [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) and can be used the same way in the base case.
 ```python
 Person = versatuple("Person",("name", "age"))
@@ -24,7 +24,7 @@ print(p)
 Person(name='Chip', age=33)
 ```
 
-### Default values
+### Default Values
 - Supply a tuple of the same length as the field names with the keyword `defaults` to specify default values for fields.
 - Use the `.new()` method to create with defaults.
 - If `defaults` is not supplied, calling `.new()` will give `None` for each field.
@@ -40,3 +40,6 @@ print(Dog.new())
 Person(name='Anonymous', age=0)
 Dog(name=None, breed=None)
 ```
+
+### Immutable Field Setters
+- A Versatuple is immutable, however 
