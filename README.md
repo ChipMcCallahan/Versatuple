@@ -64,4 +64,4 @@ print(address)
 ```
 Address(recipient='Chip McCallahan', number=1234, street='Blobby Ave', city='Chip City', state='Denial', zip=56789)
 ```
-- NOTE: This code snippet creates 7 different tuple objects, one for each method call. **From a runtime perspective, this is not efficient**; however it makes for easy coding. 
+- NOTE: This code snippet creates 7 different tuple objects, one for each method call. **From a runtime perspective, this is not efficient**; however it makes for easy coding. In the future, this may be updated to include a Builder pattern for better performance.
