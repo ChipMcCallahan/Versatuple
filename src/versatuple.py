@@ -29,9 +29,11 @@ def versatuple(class_name: str, field_names: Iterable[str], *,
        would assign a .yellow() and a .green() method to the resulting versatuple, which 
        would return a new versatuple with associated color assigned to the "color" field.
        """
-    RESERVED_NAMES = {"field_validators", "is_valid", "new"}
+    RESERVED_NAMES = {"validators", "is_valid", "new"}
     if len(RESERVED_NAMES.intersection(field_names)) > 0:
         raise ValueError(f"Field names {RESERVED_NAMES.intersection(field_names)} are reserved.")
+    if set(field_names) != {name.lower() for name in field_names}:
+        raise ValueError(f"Field names {field_names} must be all lowercase.")
     nt_class = namedtuple(class_name, field_names)
 
     def safe_setattr(cls, attr, val):

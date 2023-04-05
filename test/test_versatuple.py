@@ -19,6 +19,20 @@ class TestVersatuple(unittest.TestCase):
         vt2 = VTuple(id_, color, direction, count)
         self.assertEqual(vt, vt2)
 
+    def test_field_names_validated(self):
+        """Test that field_names must be all lowercase and do not overlap
+           with reserved method names."""
+        with self.assertRaises(ValueError):
+            versatuple("VTuple", ("Capitalized"))
+        with self.assertRaises(ValueError):
+            versatuple("VTuple", ("capitalizeD"))
+        with self.assertRaises(ValueError):
+            versatuple("VTuple", ("new"))
+        with self.assertRaises(ValueError):
+            versatuple("VTuple", ("is_valid"))
+        with self.assertRaises(ValueError):
+            versatuple("VTuple", ("validators"))
+
     def test_defaults(self):
         """If defaults are supplied, they should be set."""
         VTuple = versatuple("VTuple",
