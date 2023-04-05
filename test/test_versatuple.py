@@ -56,10 +56,11 @@ class TestVersatuple(unittest.TestCase):
 
     def test_field_shortcuts(self):
         """Test field shortcuts of versatuple."""
-        shortcuts = (("color", "yellow", "yellow"), ("color", "red", "red"), ("count", "count1", 1))
+        shortcuts = {"color": [("yellow", "yellow"), ("red", "red")],
+                     "count": [("count1", 1)]}
         VTuple = versatuple("VTuple",
                             ("id", "color", "direction", "count"),
-                            field_shortcuts=shortcuts)
+                            field_shortcuts_dict=shortcuts)
         id_, color, direction, count = 3, "blue", "n", 25
         vt = VTuple(id_, color, direction, count)
         vt2 = vt.yellow()

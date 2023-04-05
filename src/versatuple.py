@@ -6,7 +6,7 @@ from typing import Iterable
 
 
 def versatuple(class_name: str, field_names: Iterable[str],
-               field_validators_dict=None, field_shortcuts=None, defaults=None):
+               field_validators_dict=None, field_shortcuts_dict=None, defaults=None):
     """Create a versatuple class (extension of collections.namedtuple).
 
        Every field name will also turn into something like a setter, except that
@@ -20,13 +20,14 @@ def versatuple(class_name: str, field_names: Iterable[str],
        vt.is_valid() is called it would return True if vt.count was in that range and
        False otherwise.
        
-       Field shortcuts is an optional sequence of triples in the
-       format (field f, method m, value v). The 'method m' is assigned to the tuple. When 
-       called it will assign the value v to the field f and return an updated tuple. For
-       example, suppose the tuple has a field "color", and there exists a Color enum. 
-       The triple ("color", "yellow", Color.YELLOW) would assign a .yellow() method to
-       the resulting tuples, which would return a new versatuple with Color.YELLOW assigned
-       to the "color" field.
+       Field shortcuts is an optional dict, keyed by field name, where the value is a
+       sequence of pairs in the format (method m, value v). The 'method m' is assigned 
+       to the tuple. When called it will assign the value v to the field name and return 
+       an updated tuple. For example, suppose the tuple has a field "color", and there 
+       exists a Color enum. The dict 
+       {"color": ("yellow", Color.YELLOW), ("green", Color.GREEN)} 
+       would assign a .yellow() and a .green() method to the resulting versatuple, which 
+       would return a new versatuple with associated color assigned to the "color" field.
        """
     RESERVED_NAMES = {"field_validators", "is_valid", "new"}
     if len(RESERVED_NAMES.intersection(field_names)) > 0:
@@ -76,8 +77,10 @@ def versatuple(class_name: str, field_names: Iterable[str],
             self_dict[field_name] = value
             return nt_class(**self_dict)
         return shortcut
-    for shortcut in field_shortcuts or ():
-        field_name, shortcut_name, value = shortcut
-        safe_setattr(nt_class, shortcut_name, build_shortcut(field_name, value))
+    field_shortcuts_dict = field_shortcuts_dict or {}
+    for field, shortcuts in field_shortcuts_dict.items():
+        for shortcut in shortcuts:
+            name, value = shortcut
+            safe_setattr(nt_class, name, build_shortcut(field, value))
 
     return nt_class
