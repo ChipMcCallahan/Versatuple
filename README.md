@@ -99,7 +99,7 @@ print(Vehicle.new().toyota().y22())
 print(Vehicle.new().beamer().y23())
 ```
 ```
-Vehicle(make='Toyota', model=None, year=2022)
-Vehicle(make='BMW', model=None, year=2023)
+print(Vehicle.new().toyota().y22()) # shortcut for .Make("Toyota").Year(2022)
+print(Vehicle.new().beamer().y23()) # shortcut for .Make("BMW").Year(2023)
 ```
 ### Factories
