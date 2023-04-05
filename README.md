@@ -14,7 +14,9 @@ from versatuple import versatuple
 ```
 
 ### Basic Syntax
-- `Versatuple` is based on [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) and can be used the same way in the base case.
+- `Versatuple` is based on [`collections.namedtuple`](https://docs.python.org/3/library/collections.html#collections.namedtuple) and can be used in generally the same way in the base case.
+  - One important difference is that `Versatuple` requires field names to be lowercase.
+  - There are also a few reserved keywords that can't be used as field names: `new`, `validators`, and `is_valid`.
 ```python
 Person = versatuple("Person",("name", "age"))
 p = Person("Chip", 33)
